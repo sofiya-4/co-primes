@@ -1,0 +1,190 @@
+Ex6: Co_Primes ?
+
+Problem Description:
+--------------------
+Rama has given a task to Rajeev.
+Rama will provide 2 numbers start s and End E.
+Rajeev should find all the prime numbers between the given start and end numbers.
+Now, Rajeev task is to print the prime numbers as pair only if difference between these pair
+of prime numbers is exactly 2,  otherwise print -1.
+
+Example:
+
+(11,13)
+
+(17,19)
+
+Help rajeev to complete the task.
+
+Input Format:
+A single line contains 2 numbers represents the start and end numbers seperated by space.
+
+Output Format:
+Print the pair of prime numbers such that their difference exactly 2 in the range of start and
+end numbers, each pair should be displayed in a seperate line
+
+Sample Input1:
+10 100
+
+Sample output:
+
+(11, 13)
+(17, 19)
+(29, 31)
+(41, 43)
+(59, 61)
+(71, 73)
+
+Sample Input2:
+21 30
+
+Sample output:
+-1
+
+package Pack1;
+import java.util.*;
+public class Co_Primes {
+// check for prime numbers
+	static boolean prime(int inputNumber)
+	{
+		boolean flag = true;
+		if(inputNumber <= 1)
+		{
+			flag = false;
+			return flag;
+		}
+		else
+		{
+			for(int i = 2; i <= inputNumber/2; i++)
+			{
+				if( (inputNumber%i )==0)
+				{
+					flag = false;
+					break;
+				}
+			}
+		return flag;
+		}	
+	}	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter 2 numbers:");
+		int s = sc.nextInt(); // 10
+		int e = sc.nextInt(); // 100
+		
+		int first , second;
+		int found =0;
+		
+		for(int i = s; i+2 <= e; i++)// i = 99, 101<= 100->f
+		{
+			first = i; // 10, 11
+			second = i+2; // 12, 13
+			
+			if( prime(first) && prime(second))
+			{
+				System.out.println("("+first+", "+second+")");
+				found = 1;
+			}			
+		}
+		if(found == 0)
+		  System.out.println("-1");
+		}
+	}
+
+Enter 2 numbers:
+100 200
+(101, 103)
+(107, 109)
+(137, 139)
+(149, 151)
+(179, 181)
+(191, 193)
+(197, 199)
+
+=======================================================================
+
+Ex7: Largest Possible Number ?
+
+Problem Description:
+---------------------
+wap to find largest number 'L' less than a given number 'N' which should not contain
+a given digit 'D' , Otherwise print -1
+
+Example:
+
+Sample Input1:
+N = 145 -> 144, 143.. 140,139
+D = 4
+
+Output:
+L = 139
+
+Sample Input2:
+N = 145
+D = 1
+
+Output:
+L = 99
+
+Sample Input2:
+N = 145
+D = 2
+
+Output:
+L = 144
+
+Sample Input2:
+N = 145
+D = 0
+
+Output:
+L = 144
+
+Sample Input2:
+N = 1
+D = 0
+
+Output:
+L = -1
+
+indexOf():
+-----------
+method returns the position of the first occurance of specified char in a string otherwise 
+returns -1.
+
+145 - 4 -> 1 position
+1234 - 4 -> 3 position
+
+package Pack1;
+import java.util.*;
+public class Largest {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Number and Digit");
+		int number = sc.nextInt(); // 145
+		int digit = sc.nextInt(); // 4
+		// convert digit to char
+		
+		char c = Integer.toString(digit).charAt(0); // c = 4
+		int i;
+		//largest number less than  given number
+		for(i = number-1; i > 0 ; i--) // i = 145,144,143,..139
+		{
+			//if 'i' does not contain 'c'
+			if(Integer.toString(i).indexOf(c)== -1)
+			{
+				System.out.println(i);// 139 
+				break;
+			}
+		}
+		if (i==0)
+			System.out.println("-1");
+	}
+
+}
+
+Enter Number and Digit
+145
+4
+================================================================================
